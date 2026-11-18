@@ -55,6 +55,10 @@ const MAX_SLIPPAGE_BPS = 100;
 const RETRY_AFTER_BARS = 3;
 
 const closes: number[] = [];
+// Note: every bar threshold in this bot counts closes actually received,
+// not wall-clock minutes. A minute the recorder missed has no bar, so on
+// a gappy window the thresholds fire a little later in wall time; the
+// strategy is insensitive to that because all of its levels are ratios.
 let runningHigh = 0;
 let lastBuyAttemptBar = -1;
 let heldOnce = false;
